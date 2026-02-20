@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #0f172a;
+    --text-main: #f1f5f9;
+    --bg-card: #1e293b;
+    --border-card: #334155;
+  }
+
+  .light {
+    --bg-main: #f8fafc;
+    --text-main: #1e293b;
+    --bg-card: #ffffff;
+    --border-card: #e2e8f0;
+  }
+
+  body {
+    @apply bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .light .text-slate-50 {
+    color: #0f172a;
+  }
+
+  .light .text-slate-100 {
+    color: #1e293b;
+  }
+
+  .light .text-slate-200 {
+    color: #334155;
+  }
+
+  .light .text-slate-300 {
+    color: #475569;
+  }
+
+  .light .text-slate-400 {
+    color: #64748b;
+  }
+
+  .light .text-slate-500 {
+    color: #94a3b8;
+  }
+
+  .light .bg-slate-800 {
+    background-color: #ffffff;
+  }
+
+  .light .bg-slate-900 {
+    background-color: #f8fafc;
+  }
+
+  .light .bg-slate-950 {
+    background-color: #f1f5f9;
+  }
+
+  .light .border-slate-700 {
+    border-color: #e2e8f0;
+  }
+
+  .light .border-slate-800 {
+    border-color: #cbd5e1;
+  }
+
+  /* Input overrides for light mode */
+  .light input {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    border-color: #cbd5e1;
+  }
+
+  .text-brand-emerald {
+    color: #10b981;
+  }
+
+  .bg-brand-emerald {
+    background-color: #10b981;
+  }
+}
