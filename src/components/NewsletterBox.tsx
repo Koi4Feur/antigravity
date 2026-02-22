@@ -1,17 +1,35 @@
 import React, { useState } from 'react';
-import { Mail, CheckCircle2 } from 'lucide-react';
+import { Mail, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { supabase } from '../services/supabase';
 
 export const NewsletterBox: React.FC = () => {
     const [email, setEmail] = useState('');
     const [isSubscribed, setIsSubscribed] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (email) {
-            // Logic fictive d'inscription
-            setTimeout(() => {
-                setIsSubscribed(true);
-            }, 500);
+        if (!email) return;
+
+        setIsLoading(true);
+        setError(null);
+
+        const { error: sbError } = await supabase
+            .from('subscribers')
+            .insert([{ email }]);
+
+        setIsLoading(false);
+
+        if (sbError) {
+            // Supabase error code 23505 = unique constraint violation (email already exists)
+            if (sbError.code === '23505') {
+                setError('Cet email est déjà inscrit à la newsletter.');
+            } else {
+                setError("Une erreur s'est produite. Veuillez réessayer.");
+            }
+        } else {
+            setIsSubscribed(true);
         }
     };
 
@@ -41,25 +59,39 @@ export const NewsletterBox: React.FC = () => {
                         <span className="font-semibold text-emerald-500 tracking-wider text-sm uppercase">Newsletter VIP</span>
                     </div>
                     <h3 className="text-2xl font-bold text-white mb-2">Ne manquez aucun surebet</h3>
-                    <p className="text-slate-400">Recevez nos alertes de value be et nos astuces d'optimisation directement dans votre boîte mail.</p>
+                    <p className="text-slate-400">Recevez nos alertes de value bet et nos astuces d'optimisation directement dans votre boîte mail.</p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="md:w-1/2 flex flex-col sm:flex-row gap-3">
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="votre@email.com"
-                        required
-                        className="flex-1 bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
-                    />
-                    <button
-                        type="submit"
-                        className="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-lg shadow-emerald-900/20"
-                    >
-                        S'inscrire
-                    </button>
-                </form>
+                <div className="md:w-1/2">
+                    <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => { setEmail(e.target.value); setError(null); }}
+                            placeholder="votre@email.com"
+                            required
+                            disabled={isLoading}
+                            className="flex-1 bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all disabled:opacity-60"
+                        />
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors shadow-lg shadow-emerald-900/20"
+                        >
+                            {isLoading ? (
+                                <><Loader2 className="w-4 h-4 animate-spin" /> Inscription...</>
+                            ) : (
+                                "S'inscrire"
+                            )}
+                        </button>
+                    </form>
+                    {error && (
+                        <div className="mt-3 flex items-center gap-2 text-sm text-red-400 animate-in fade-in duration-300">
+                            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                            <span>{error}</span>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
