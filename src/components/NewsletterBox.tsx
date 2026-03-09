@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { supabase } from '../services/supabase';
 
 export const NewsletterBox: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -14,40 +15,21 @@ export const NewsletterBox: React.FC = () => {
         setIsLoading(true);
         setError(null);
 
-        try {
-            const formData = { email };
+        const { error: sbError } = await supabase
+            .from('subscribers')
+            .insert([{ email }]);
 
-            // Appeler le script PHP backend
-            // Note: En mode développement local (Vite), cela fera une requête sur localhost.
-            // En production (Hostinger), le script sera à la racine /api/subscribe.php
-            const apiUrl = import.meta.env.DEV ? 'http://localhost/api/subscribe.php' : '/api/subscribe.php';
+        setIsLoading(false);
 
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                // Erreur 409 = L'email existe déjà dans MySQL (géré par le backend PHP)
-                if (response.status === 409) {
-                    setError('Cet email est déjà inscrit à la newsletter.');
-                } else {
-                    setError(data.error || "Une erreur s'est produite. Veuillez réessayer.");
-                }
+        if (sbError) {
+            // Supabase error code 23505 = unique constraint violation (email already exists)
+            if (sbError.code === '23505') {
+                setError('Cet email est déjà inscrit à la newsletter.');
             } else {
-                // Inscription réussie
-                setIsSubscribed(true);
+                setError("Une erreur s'est produite. Veuillez réessayer.");
             }
-        } catch (err) {
-            console.error("Erreur d'inscription:", err);
-            setError("Impossible de joindre le serveur. Vérifiez votre connexion.");
-        } finally {
-            setIsLoading(false);
+        } else {
+            setIsSubscribed(true);
         }
     };
 
