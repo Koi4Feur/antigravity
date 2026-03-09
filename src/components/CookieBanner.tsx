@@ -18,15 +18,15 @@ export const CookieBanner: React.FC = () => {
     if (!isVisible) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-end justify-center px-4 py-6 sm:items-center sm:p-0 bg-slate-900/80 backdrop-blur-sm">
-            <div className="relative transform overflow-hidden rounded-lg bg-slate-800 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border border-slate-700">
+        <div className="fixed inset-0 z-50 flex items-end justify-center px-4 py-6 sm:items-center sm:p-0 bg-slate-900/40 dark:bg-slate-900/80 backdrop-blur-sm">
+            <div className="relative transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6 border border-slate-200 dark:border-slate-700">
                 <div className="sm:flex sm:items-start">
                     <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                        <h3 className="text-base font-semibold leading-6 text-white">
+                        <h3 className="text-base font-semibold leading-6 text-slate-900 dark:text-white">
                             Respect de votre vie privée
                         </h3>
                         <div className="mt-2">
-                            <p className="text-sm text-slate-300">
+                            <p className="text-sm text-slate-600 dark:text-slate-300">
                                 Nous utilisons des cookies pour améliorer votre expérience et analyser le trafic. En continuant, vous acceptez notre utilisation des cookies.
                             </p>
                         </div>

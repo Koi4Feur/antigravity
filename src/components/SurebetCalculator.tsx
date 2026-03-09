@@ -25,7 +25,7 @@ export const SurebetCalculator: React.FC = () => {
     };
 
     return (
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-xl">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-xl">
             <Helmet>
                 <title>Calculateur de Surebet & Arbitrage | BetCalc France</title>
                 <meta name="description" content="Détectez instantanément les surebets et calculez la répartition de vos mises pour un profit garanti sur les paris sportifs." />
@@ -36,44 +36,44 @@ export const SurebetCalculator: React.FC = () => {
                     <CircleDollarSign className="w-6 h-6 text-emerald-500" />
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold text-white">Calculateur Surebet</h1>
-                    <p className="text-slate-400 text-sm">Arbitrage 2 issues</p>
+                    <h1 className="text-xl font-bold text-slate-900 dark:text-white">Calculateur Surebet</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm">Arbitrage 2 issues</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Cote 1</label>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Cote 1</label>
                     <input
                         type="number"
                         value={odd1}
                         onChange={(e) => setOdd1(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
                         placeholder="Ex: 1.80"
                         step="0.01"
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Cote 2</label>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Cote 2</label>
                     <input
                         type="number"
                         value={odd2}
                         onChange={(e) => setOdd2(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
                         placeholder="Ex: 2.30"
                         step="0.01"
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Mise Totale (€)</label>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Mise Totale (€)</label>
                     <input
                         type="number"
                         value={stake}
                         onChange={(e) => setStake(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all"
                         placeholder="100"
                     />
                 </div>
@@ -90,7 +90,7 @@ export const SurebetCalculator: React.FC = () => {
             {result && (
                 <div className={`rounded-lg p-6 animate-in fade-in slide-in-from-bottom-2 duration-300 ${result.isArb ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-red-500/10 border border-red-500/20'
                     }`}>
-                    <div className="flex items-center justify-between mb-4 border-b border-dashed border-slate-600/30 pb-4">
+                    <div className="flex items-center justify-between mb-4 border-b border-dashed border-slate-200 dark:border-slate-600/30 pb-4">
                         <div className="flex items-center gap-2">
                             {result.isArb ? (
                                 <CheckCircle2 className="w-5 h-5 text-emerald-500" />
@@ -102,7 +102,7 @@ export const SurebetCalculator: React.FC = () => {
                             </span>
                         </div>
                         <div className="text-right">
-                            <span className="text-sm text-slate-400 block">Profit estimé</span>
+                            <span className="text-sm text-slate-500 dark:text-slate-400 block">Profit estimé</span>
                             <span className={`text-xl font-bold ${result.isArb ? 'text-emerald-400' : 'text-red-400'}`}>
                                 {result.profitPercent.toFixed(2)}%
                             </span>
@@ -110,19 +110,19 @@ export const SurebetCalculator: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-slate-900/50 p-3 rounded border border-slate-700/50">
-                            <span className="text-xs text-slate-500 block mb-1">Mise sur Cote 1</span>
-                            <span className="font-mono text-lg font-bold">{result.stake1.toFixed(2)} €</span>
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-3 rounded border border-slate-200 dark:border-slate-700/50">
+                            <span className="text-xs text-slate-600 dark:text-slate-500 block mb-1">Mise sur Cote 1</span>
+                            <span className="font-mono text-lg font-bold text-slate-900 dark:text-white">{result.stake1.toFixed(2)} €</span>
                         </div>
-                        <div className="bg-slate-900/50 p-3 rounded border border-slate-700/50">
-                            <span className="text-xs text-slate-500 block mb-1">Mise sur Cote 2</span>
-                            <span className="font-mono text-lg font-bold">{result.stake2.toFixed(2)} €</span>
+                        <div className="bg-slate-50 dark:bg-slate-900/50 p-3 rounded border border-slate-200 dark:border-slate-700/50">
+                            <span className="text-xs text-slate-600 dark:text-slate-500 block mb-1">Mise sur Cote 2</span>
+                            <span className="font-mono text-lg font-bold text-slate-900 dark:text-white">{result.stake2.toFixed(2)} €</span>
                         </div>
                     </div>
 
                     <div className="mt-4 text-center">
-                        <span className="text-sm text-slate-400">Gain Total : </span>
-                        <span className={`font-bold ${result.totalProfit > 0 ? 'text-emerald-400' : 'text-slate-200'}`}>
+                        <span className="text-sm text-slate-500 dark:text-slate-400">Gain Total : </span>
+                        <span className={`font-bold ${result.totalProfit > 0 ? 'text-emerald-500 dark:text-emerald-400' : 'text-slate-900 dark:text-slate-200'}`}>
                             {result.totalProfit > 0 ? '+' : ''}{result.totalProfit.toFixed(2)} €
                         </span>
                     </div>

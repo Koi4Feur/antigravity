@@ -35,18 +35,18 @@ export const NewsletterBox: React.FC = () => {
 
     if (isSubscribed) {
         return (
-            <div className="bg-slate-800 border border-emerald-500/30 rounded-xl p-8 text-center animate-in fade-in duration-500">
+            <div className="bg-white dark:bg-slate-800 border border-emerald-500/30 rounded-xl p-8 text-center animate-in fade-in duration-500">
                 <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-500 mb-4">
                     <CheckCircle2 className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Inscription confirmée !</h3>
-                <p className="text-slate-400">Merci de rejoindre notre communauté. Vous recevrez bientôt nos meilleurs pronostics.</p>
+                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Inscription confirmée !</h3>
+                <p className="text-slate-500 dark:text-slate-400">Merci de rejoindre notre communauté. Vous recevrez bientôt nos meilleurs pronostics.</p>
             </div>
         );
     }
 
     return (
-        <div className="bg-slate-800 border border-slate-700 rounded-xl p-8 md:p-10 relative overflow-hidden">
+        <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-8 md:p-10 relative overflow-hidden">
             {/* Decorative background element */}
             <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -58,8 +58,8 @@ export const NewsletterBox: React.FC = () => {
                         </div>
                         <span className="font-semibold text-emerald-500 tracking-wider text-sm uppercase">Newsletter VIP</span>
                     </div>
-                    <h3 className="text-2xl font-bold text-white mb-2">Ne manquez aucun surebet</h3>
-                    <p className="text-slate-400">Recevez nos alertes de value bet et nos astuces d'optimisation directement dans votre boîte mail.</p>
+                    <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-2">Ne manquez aucun surebet</h3>
+                    <p className="text-slate-500 dark:text-slate-400">Recevez nos alertes de value bet et nos astuces d'optimisation directement dans votre boîte mail.</p>
                 </div>
 
                 <div className="md:w-1/2">
@@ -71,7 +71,7 @@ export const NewsletterBox: React.FC = () => {
                             placeholder="votre@email.com"
                             required
                             disabled={isLoading}
-                            className="flex-1 bg-slate-900 border border-slate-600 rounded-lg px-4 py-3 text-white placeholder:text-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all disabled:opacity-60"
+                            className="flex-1 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-600 rounded-lg px-4 py-3 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:ring-2 focus:ring-emerald-500 focus:border-transparent outline-none transition-all disabled:opacity-60"
                         />
                         <button
                             type="submit"

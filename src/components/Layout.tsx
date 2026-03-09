@@ -22,17 +22,17 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   ];
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-200 ${isActive ? 'bg-slate-800 text-emerald-400 font-semibold' : 'text-slate-400 hover:text-emerald-400 hover:bg-slate-800/50'}`;
+    `flex items-center gap-2 px-3 py-2 rounded-lg transition-colors duration-200 ${isActive ? 'bg-emerald-50 dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 font-semibold' : 'text-slate-600 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-slate-100 dark:hover:bg-slate-800/50'}`;
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-200 flex flex-col font-sans">
-      <header className="sticky top-0 z-40 w-full border-b border-slate-800 bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-slate-900/60">
+    <div className="min-h-screen flex flex-col font-sans">
+      <header className="sticky top-0 z-40 w-full border-b border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:supports-[backdrop-filter]:bg-slate-900/60">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group z-50">
-            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-bold text-slate-900 group-hover:bg-emerald-400 transition-colors">
+            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center font-bold text-white dark:text-slate-900 group-hover:bg-emerald-600 dark:group-hover:bg-emerald-400 transition-colors">
               B
             </div>
-            <span className="font-bold text-xl tracking-tight">BetCalc <span className="text-emerald-500">France</span></span>
+            <span className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">BetCalc <span className="text-emerald-600 dark:text-emerald-500">France</span></span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -49,14 +49,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
           <div className="flex items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2 text-slate-400 hover:text-emerald-500 transition-colors rounded-lg hover:bg-slate-800/50"
+              className="p-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-500 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/50"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
 
             <button
-              className="md:hidden p-2 text-slate-400 hover:text-emerald-500 transition-colors z-50"
+              className="md:hidden p-2 text-slate-500 dark:text-slate-400 hover:text-emerald-600 dark:hover:text-emerald-500 transition-colors z-50"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -65,14 +65,14 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
           {/* Mobile Navigation Overlay */}
           {isMenuOpen && (
-            <div className="fixed inset-0 bg-slate-900 z-40 flex flex-col pt-20 px-4 md:hidden animate-in slide-in-from-top-10 duration-200">
+            <div className="fixed inset-0 bg-white dark:bg-slate-900 z-40 flex flex-col pt-20 px-4 md:hidden animate-in slide-in-from-top-10 duration-200">
               <nav className="flex flex-col gap-4 text-lg font-medium">
                 {navItems.map((item) => (
                   <NavLink
                     key={item.path}
                     to={item.path}
                     className={({ isActive }) =>
-                      `flex items-center gap-4 p-4 rounded-xl border ${isActive ? 'bg-slate-800 border-emerald-500/30 text-emerald-400' : 'border-slate-800 text-slate-400'}`
+                      `flex items-center gap-4 p-4 rounded-xl border ${isActive ? 'bg-emerald-50 dark:bg-slate-800 border-emerald-500/30 text-emerald-600 dark:text-emerald-400' : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'}`
                     }
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -106,12 +106,21 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
         </aside>
       </main>
 
-      <footer className="border-t border-slate-800 py-12 mt-auto bg-slate-950">
+      <footer className="border-t border-slate-200 dark:border-slate-800 py-12 mt-auto bg-slate-100 dark:bg-slate-950">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-slate-500 text-sm mb-4">&copy; {new Date().getFullYear()} BetCalc France. Tous droits réservés.</p>
+          <p className="text-slate-500 dark:text-slate-500 text-sm mb-4">&copy; {new Date().getFullYear()} BetCalc France. Tous droits réservés.</p>
 
-          <div className="border-t border-slate-900 pt-6 mt-6 max-w-2xl mx-auto">
-            <p className="text-xs text-slate-600 font-semibold uppercase tracking-wider mb-2">
+          <div className="flex justify-center gap-6 mb-6">
+            <Link to="/mentions-legales" className="text-sm text-slate-500 hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-500 transition-colors">
+              Mentions Légales
+            </Link>
+            <Link to="/politique-confidentialite" className="text-sm text-slate-500 hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-500 transition-colors">
+              Politique de Confidentialité
+            </Link>
+          </div>
+
+          <div className="border-t border-slate-200 dark:border-slate-900 pt-6 mt-6 max-w-2xl mx-auto">
+            <p className="text-xs text-slate-500 dark:text-slate-600 font-semibold uppercase tracking-wider mb-2">
               JOUER COMPORTE DES RISQUES : ENDETTEMENT, ISOLEMENT, DÉPENDANCE.
             </p>
             <p className="text-xs text-emerald-600/70 font-bold">

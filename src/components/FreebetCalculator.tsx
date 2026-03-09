@@ -25,7 +25,7 @@ export const FreebetCalculator: React.FC = () => {
     };
 
     return (
-        <div className="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-xl">
+        <div className="bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-6 shadow-xl">
             <Helmet>
                 <title>Optimiseur de Freebet & Paris Gratuits | BetCalc France</title>
                 <meta name="description" content="Convertissez vos freebets en cash. Calculez la couverture idéale entre bookmaker et exchange pour maximiser votre rétention." />
@@ -36,43 +36,43 @@ export const FreebetCalculator: React.FC = () => {
                     <Gift className="w-6 h-6 text-purple-500" />
                 </div>
                 <div>
-                    <h1 className="text-xl font-bold text-white">Optimiseur Freebet</h1>
-                    <p className="text-slate-400 text-sm">Conversion Matched Betting</p>
+                    <h1 className="text-xl font-bold text-slate-900 dark:text-white">Optimiseur Freebet</h1>
+                    <p className="text-slate-500 dark:text-slate-400 text-sm">Conversion Matched Betting</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Montant Freebet</label>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Montant Freebet</label>
                     <input
                         type="number"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                         placeholder="10"
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Cote Back (Book)</label>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Cote Back (Book)</label>
                     <input
                         type="number"
                         value={backOdd}
                         onChange={(e) => setBackOdd(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                         placeholder="ex: 4.00"
                         step="0.01"
                     />
                 </div>
                 <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-500">Cote Lay (Exchange)</label>
+                    <label className="text-xs font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-500">Cote Lay (Exchange)</label>
                     <input
                         type="number"
                         value={layOdd}
                         onChange={(e) => setLayOdd(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && handleCalculate()}
-                        className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
+                        className="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-3 text-slate-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all"
                         placeholder="ex: 4.10"
                         step="0.01"
                     />
@@ -88,32 +88,32 @@ export const FreebetCalculator: React.FC = () => {
             </button>
 
             {result && (
-                <div className="bg-slate-900/50 rounded-lg p-6 border border-slate-700/50">
+                <div className="bg-slate-50 dark:bg-slate-900/50 rounded-lg p-6 border border-slate-200 dark:border-slate-700/50">
                     <div className="flex items-center justify-between mb-6">
                         <div className="flex items-center gap-3">
                             <div className={`p-2 rounded-full ${result.retentionPercent >= 70 ? 'bg-emerald-500/10 text-emerald-500' : 'bg-yellow-500/10 text-yellow-500'}`}>
                                 <TrendingUp className="w-5 h-5" />
                             </div>
                             <div>
-                                <span className="text-slate-400 text-sm block">Taux de rétention</span>
+                                <span className="text-slate-500 dark:text-slate-400 text-sm block">Taux de rétention</span>
                                 <span className={`text-xl font-bold ${result.retentionPercent >= 70 ? 'text-emerald-400' : 'text-yellow-400'}`}>
                                     {result.retentionPercent.toFixed(2)}%
                                 </span>
                             </div>
                         </div>
                         <div className="text-right">
-                            <span className="text-slate-400 text-sm block">Profit Net Garanti</span>
-                            <span className="text-2xl font-bold text-white">{result.profit.toFixed(2)} €</span>
+                            <span className="text-slate-500 dark:text-slate-400 text-sm block">Profit Net Garanti</span>
+                            <span className="text-2xl font-bold text-slate-900 dark:text-white">{result.profit.toFixed(2)} €</span>
                         </div>
                     </div>
 
-                    <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+                    <div className="h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                         <div
                             className={`h-full transition-all duration-500 ${result.retentionPercent >= 70 ? 'bg-emerald-500' : 'bg-yellow-500'}`}
                             style={{ width: `${Math.min(result.retentionPercent, 100)}%` }}
                         />
                     </div>
-                    <p className="text-xs text-slate-500 mt-2 text-right">Objectif &gt; 70%</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 text-right">Objectif &gt; 70%</p>
                 </div>
             )}
         </div>
