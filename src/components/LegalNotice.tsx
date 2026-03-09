@@ -25,10 +25,10 @@ export const LegalNotice: React.FC = () => {
 
                 <h2>2. Hébergement</h2>
                 <p>
-                    Ce site est hébergé par Vercel Inc.<br />
-                    340 S Lemon Ave #4133<br />
-                    Walnut, CA 91789<br />
-                    États-Unis
+                    Ce site est hébergé par Hostinger International Ltd.<br />
+                    61 Lordou Vironos Street<br />
+                    6023 Larnaca, Chypre<br />
+                    Contact : https://www.hostinger.fr/contact
                 </p>
 
                 <h2>3. Avertissement sur les paris sportifs</h2>
