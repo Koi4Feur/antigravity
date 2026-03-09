@@ -90,18 +90,18 @@ export const SurebetCalculator: React.FC = () => {
             {result && (
                 <div className={`rounded-lg p-6 animate-in fade-in slide-in-from-bottom-2 duration-300 ${result.isArb ? 'bg-emerald-500/10 border border-emerald-500/20' : 'bg-red-500/10 border border-red-500/20'
                     }`}>
-                    <div className="flex items-center justify-between mb-4 border-b border-dashed border-slate-200 dark:border-slate-600/30 pb-4">
+                    <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-3 sm:gap-0 mb-4 border-b border-dashed border-slate-200 dark:border-slate-600/30 pb-4">
                         <div className="flex items-center gap-2">
                             {result.isArb ? (
                                 <CheckCircle2 className="w-5 h-5 text-emerald-500" />
                             ) : (
                                 <AlertTriangle className="w-5 h-5 text-red-500" />
                             )}
-                            <span className={`font-bold ${result.isArb ? 'text-emerald-400' : 'text-red-400'}`}>
+                            <span className={`font-bold text-center sm:text-left ${result.isArb ? 'text-emerald-400' : 'text-red-400'}`}>
                                 {result.isArb ? 'Opportunité Détectée !' : 'Pas de Surebet'}
                             </span>
                         </div>
-                        <div className="text-right">
+                        <div className="text-center sm:text-right">
                             <span className="text-sm text-slate-500 dark:text-slate-400 block">Profit estimé</span>
                             <span className={`text-xl font-bold ${result.isArb ? 'text-emerald-400' : 'text-red-400'}`}>
                                 {result.profitPercent.toFixed(2)}%

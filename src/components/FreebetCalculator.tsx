@@ -89,8 +89,8 @@ export const FreebetCalculator: React.FC = () => {
 
             {result && (
                 <div className="bg-slate-50 dark:bg-slate-900/50 rounded-lg p-6 border border-slate-200 dark:border-slate-700/50">
-                    <div className="flex items-center justify-between mb-6">
-                        <div className="flex items-center gap-3">
+                    <div className="flex flex-col sm:flex-row items-center sm:justify-between gap-4 sm:gap-0 mb-6 border-b sm:border-0 border-slate-200 dark:border-slate-700/50 pb-4 sm:pb-0">
+                        <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
                             <div className={`p-2 rounded-full ${result.retentionPercent >= 70 ? 'bg-emerald-500/10 text-emerald-500' : 'bg-yellow-500/10 text-yellow-500'}`}>
                                 <TrendingUp className="w-5 h-5" />
                             </div>
@@ -101,7 +101,7 @@ export const FreebetCalculator: React.FC = () => {
                                 </span>
                             </div>
                         </div>
-                        <div className="text-right">
+                        <div className="text-center sm:text-right">
                             <span className="text-slate-500 dark:text-slate-400 text-sm block">Profit Net Garanti</span>
                             <span className="text-2xl font-bold text-slate-900 dark:text-white">{result.profit.toFixed(2)} €</span>
                         </div>

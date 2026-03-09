@@ -36,7 +36,7 @@ const AdModalInternal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     useEffect(() => {
         document.body.style.overflow = 'hidden';
         return () => {
-            document.body.style.overflow = 'unset';
+            document.body.style.overflow = '';
         };
     }, []);
     return (

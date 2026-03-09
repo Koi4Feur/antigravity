@@ -98,9 +98,9 @@ export const BoostCalculator: React.FC = () => {
                         ))}
                     </div>
 
-                    <div className={`p-4 rounded-lg flex justify-between items-center border ${result.isProfitable ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700'}`}>
-                        <span className="text-slate-700 dark:text-slate-300 font-medium">Profit Total</span>
-                        <span className={`text-xl font-bold ${result.isProfitable ? 'text-emerald-500 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>
+                    <div className={`p-4 rounded-lg flex flex-col sm:flex-row justify-between items-center gap-2 border ${result.isProfitable ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-700'}`}>
+                        <span className="text-slate-700 dark:text-slate-300 font-medium text-center sm:text-left">Profit Total</span>
+                        <span className={`text-xl font-bold text-center sm:text-right ${result.isProfitable ? 'text-emerald-500 dark:text-emerald-400' : 'text-slate-500 dark:text-slate-400'}`}>
                             {result.isProfitable ? '+' : ''}{result.totalProfit.toFixed(2)} €
                         </span>
                     </div>
